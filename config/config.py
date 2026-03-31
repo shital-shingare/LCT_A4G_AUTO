@@ -3,8 +3,10 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-BASE_URL = os.getenv("BASE_URL", "http://lct-a4g-qa.accoladeelectronics.com/login")
-DASHBOARD_URL = os.getenv("DASHBOARD_URL", "http://lct-a4g-qa.accoladeelectronics.com/dashboard")
+BASE_URL = os.getenv("BASE_URL", "https://lct-a4g-qa.accoladeelectronics.com/login")
+DASHBOARD_URL = os.getenv("DASHBOARD_URL", "https://lct-a4g-qa.accoladeelectronics.com/dashboard")
+USERNAME = os.getenv("USERNAME", "")
+PASSWORD = os.getenv("PASSWORD", "LWj09BEg")
 BROWSER = os.getenv("BROWSER", "chromium")
 HEADLESS = os.getenv("HEADLESS", "false").lower() == "true"
 SCREENSHOT_ON_FAILURE = os.getenv("SCREENSHOT_ON_FAILURE", "true").lower() == "true"
