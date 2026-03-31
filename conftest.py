@@ -1,7 +1,7 @@
 import pytest
 from playwright.sync_api import sync_playwright
-from config.config import BASE_URL, DASHBOARD_URL, BROWSER, HEADLESS, USERNAME, PASSWORD
-from pages.dashboard_page import Dashboard
+from config.config import BASE_URL, BROWSER, HEADLESS, USERNAME, PASSWORD
+from config.global_var import DOWNLOADS_PATH
 from pages.login_page import LoginPage
 
 # 🔹 Playwright instance
@@ -14,7 +14,11 @@ def playwright_instance():
 @pytest.fixture(scope="session")
 def browser(playwright_instance):
     browser_type = getattr(playwright_instance, BROWSER)
-    browser = browser_type.launch(headless=HEADLESS)
+    browser = browser_type.launch(
+        headless=HEADLESS,
+        args=["--start-maximized"],
+        downloads_path={DOWNLOADS_PATH},
+        )
     yield browser
     browser.close()
 
@@ -37,12 +41,6 @@ def login_page(page):
 
     return page
 
-# 🔹 Dashboard Fixture
-@pytest.fixture(scope="function")
-def dashboard_page(page):
-    dashboard = Dashboard(page)
-    dashboard.go_to_dashboard(DASHBOARD_URL)
-    return dashboard
 
 # 🔹 Screenshot on Failure
 @pytest.hookimpl(hookwrapper=True)

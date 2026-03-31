@@ -9,9 +9,10 @@ else:
 
 ROOT_DIR = os.path.dirname(os.path.dirname(__file__))
 CONFIG_PATH = os.path.join(ROOT_DIR, f"Config")
-DATA_FILES_PATH = os.path.join(ROOT_DIR, f"TestData")
+DATA_FILES_PATH = os.path.join(ROOT_DIR, f"test_data")
+DOWNLOADS_PATH = os.path.join(ROOT_DIR, f"downloads")
+REPORT_PATH = os.path.join(ROOT_DIR, f"Reports")
 ALLURE_RESULTS_PATH = os.path.join(ROOT_DIR,f"Reports{path_divider}allureReport")
 SCREENSHOT_PATH = os.path.join(ROOT_DIR, f"Artifacts{path_divider}Screenshots")
-REPORT_PATH = os.path.join(ROOT_DIR, f"Reports")
 LOGS_PATH = os.path.join(ROOT_DIR, f"Artifacts{path_divider}Logs")
 VIDEO_DIR = os.path.join(ROOT_DIR, f"Artifacts{path_divider}Videos")
