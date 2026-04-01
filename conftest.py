@@ -3,6 +3,7 @@ from playwright.sync_api import sync_playwright
 from config.config import BASE_URL, DASHBOARD_URL, BROWSER, HEADLESS, USERNAME, PASSWORD
 from pages.dashboard_page import Dashboard
 from pages.login_page import LoginPage
+from config.global_var import SCREENSHOT_PATH
 
 # 🔹 Playwright instance
 @pytest.fixture(scope="session")
@@ -53,4 +54,4 @@ def pytest_runtest_makereport(item, call):
     if report.when == "call" and report.failed:
         page = item.funcargs.get("page", None)
         if page:
-            page.screenshot(path=f"screenshots/{item.name}.png")
+            page.screenshot(path = f"{SCREENSHOT_PATH}/{item.name}.png")

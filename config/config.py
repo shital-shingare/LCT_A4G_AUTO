@@ -12,7 +12,12 @@ LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO")
 VIDEO_RECORDING = os.getenv("VIDEO_RECORDING", "false").lower() == "true"
 USERNAME = os.getenv("APP_USERNAME")
 PASSWORD = os.getenv("APP_PASSWORD")
-
 BASE_URL = os.getenv("BASE_URL")
+
+# ❌ Invalid Credentials (for testing)
+INVALID_USERNAME = os.getenv("INVALID_USERNAME", "ABC")
+INVALID_PASSWORD = os.getenv("INVALID_PASSWORD", "12345")
+
+
 # USERNAME = os.getenv("USERNAME")
 # PASSWORD = os.getenv("PASSWORD")
