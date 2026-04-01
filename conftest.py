@@ -1,9 +1,7 @@
-from importlib.resources import path
-
 import pytest
 from playwright.sync_api import sync_playwright
-from config.config import BASE_URL, BROWSER, HEADLESS, USERNAME, PASSWORD
-from config.global_var import DOWNLOADS_PATH
+from config.config import BASE_URL, BROWSER, HEADLESS, USERNAME, PASSWORD, DASHBOARD_URL
+from config.global_var import DOWNLOADS_PATH, SCREENSHOT_PATH
 from pages.login_page import LoginPage
 
 # 🔹 Playwright instance
@@ -27,8 +25,11 @@ def browser(playwright_instance):
 # 🔹 Page (new per test)
 @pytest.fixture(scope="function")
 def page(browser):
-    context = browser.new_context()
+    context = browser.new_context(
+        viewport={'width': 1280, 'height': 720}
+    )
     page = context.new_page()
+    page.evaluate("document.body.style.zoom = '0.67'")
     yield page
     context.close()
 
@@ -39,6 +40,7 @@ def login_page(page):
     login.load(BASE_URL)
     login.login(USERNAME, PASSWORD)
 
+    page.wait_for_url(DASHBOARD_URL, timeout=15000)
     page.wait_for_load_state("networkidle")
 
     return page
@@ -53,4 +55,4 @@ def pytest_runtest_makereport(item, call):
     if report.when == "call" and report.failed:
         page = item.funcargs.get("page", None)
         if page:
-            page.screenshot(path=f"screenshots/{item.name}.png")
+            page.screenshot(path=f"{SCREENSHOT_PATH}/{item.name}.png")
