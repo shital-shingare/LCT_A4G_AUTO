@@ -12,3 +12,5 @@ HEADLESS = os.getenv("HEADLESS", "false").lower() == "true"
 SCREENSHOT_ON_FAILURE = os.getenv("SCREENSHOT_ON_FAILURE", "true").lower() == "true"
 LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO")
 VIDEO_RECORDING = os.getenv("VIDEO_RECORDING", "false").lower() == "true"
+INVALID_USERNAME = os.getenv("INVALID_USERNAME", "ABCD")
+INVALID_PASSWORD = os.getenv("INVALID_PASSWORD", "12345")
